@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: youtube-live-status
+Version: 0.1.1
+Summary: check youtuber live status
+Home-page: https://github.com/phillychi3/youtube_live_status
+Author: phillychi3
+Author-email: phillychi3@gmail.com
+License: UNKNOWN
+Description: **youtube live status**
+        github: https://github.com/phillychi3/youtube_live_status
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent

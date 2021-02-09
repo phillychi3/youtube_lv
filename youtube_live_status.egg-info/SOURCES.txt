@@ -1,0 +1,7 @@
+README.md
+pyproject.toml
+setup.py
+youtube_live_status.egg-info/PKG-INFO
+youtube_live_status.egg-info/SOURCES.txt
+youtube_live_status.egg-info/dependency_links.txt
+youtube_live_status.egg-info/top_level.txt
