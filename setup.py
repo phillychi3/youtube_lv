@@ -4,16 +4,18 @@ with open("lol", "r") as lo:
 
 setuptools.setup(
      name='youtube_lv',  
-     version='0.0.1',
+     version='0.0.6',
      author="phillychi3",
      author_email="phillychi3@gmail.com",
      description="check youtuber live status",
      long_description=long_description,
-     url="https://github.com/phillychi3/youtube_live_status",
+     url="https://github.com/phillychi3/youtube_lv",
      py_modules=["youtube","youtuber","status","live"],
+     packages=setuptools.find_packages(),
      classifiers=[
          "Programming Language :: Python :: 3",
          "License :: OSI Approved :: Apache Software License",
          "Operating System :: OS Independent",
-     ],
+     ]
+    
  )

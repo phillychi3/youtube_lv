@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: youtube-lv
+Version: 0.0.6
+Summary: check youtuber live status
+Home-page: https://github.com/phillychi3/youtube_lv
+Author: phillychi3
+Author-email: phillychi3@gmail.com
+License: UNKNOWN
+Description: **youtube_lv**
+        github: https://github.com/phillychi3/youtube_lv
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
