@@ -4,7 +4,7 @@ with open("lol", "r") as lo:
 
 setuptools.setup(
      name='youtube_lv',  
-     version='0.0.6',
+     version='0.1.0',
      author="phillychi3",
      author_email="phillychi3@gmail.com",
      description="check youtuber live status",
