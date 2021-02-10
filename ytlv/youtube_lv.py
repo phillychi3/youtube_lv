@@ -38,7 +38,8 @@ class islive():
         try:
             r = requests.get(link)
             if  re.search(r'"isLive":true', r.text) is None:                
-                return("no")
+                data=[{"link":link,"status":"NONE","title":"NONE"}]  
+                return(data)
             else:
                 try:
                     title=re.findall(r'title="(.*?)"',r.text)
