@@ -49,6 +49,7 @@ class islive():
                     title="NONE"
                 try:
                     status=re.search(r'"status":"(.*?)"',r.text).group(1)
+                    
                     if status=="LIVE_STREAM_OFFLINE":
                         status="LIVE_OFFLINE"
                 except:
