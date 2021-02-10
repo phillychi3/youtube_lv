@@ -6,6 +6,6 @@
 ### how to use
 
 ```python
-from ytlive import islive
+from youtube_live_status import *
 live=islive("channel ID")
 ```
