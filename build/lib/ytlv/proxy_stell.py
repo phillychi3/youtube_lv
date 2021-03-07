@@ -2,6 +2,8 @@
 import urllib.request
 import random
 import re
+import sys
+import os
 useragents=["AdsBot-Google ( http://www.google.com/adsbot.html)",
 			"Avant Browser/1.2.789rel1 (http://www.avantbrowser.com)"
 ]
@@ -43,12 +45,18 @@ def proxylist():
 	print ("\nProxylist Updated!\n")
 
 def get_proxy():
-	out_file = open("proxy.txt","w") 
-	out_file.close()
+	try:
+		out_file = open("proxy.txt","w") 
+		out_file.close()
+	except:
+		file = open("proxy.txt","a")
+		file.close()
+
+
 	foxtools = ['http://api.foxtools.ru/v2/Proxy.txt?page=%d' % n for n in range(1, 6)]
 	for position, url in enumerate(foxtools):
 		proxyget(url)
-	print("Current IPs in proxylist: %s" % (len(open("proxy.txt").readlines())))
+	print("get ip: %s" % (len(open("proxy.txt").readlines())))
 
 if __name__ == '__main__':
 	get_proxy()

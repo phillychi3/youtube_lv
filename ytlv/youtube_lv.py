@@ -2,12 +2,10 @@
 import requests
 import re
 from ytlv.proxy_stell import get_proxy
+import random
+import os
+
 class islive():
-    def random_line(self,fname):
-        lines = open(fname).read().splitlines()
-        return(lines)
-
-
 
 
 #--------------------------------------------------------------------正常--------------------------------------------------------------------    
@@ -104,7 +102,9 @@ class islive():
 #--------------------------------------------------------------------代理--------------------------------------------------------------------  
     def prytid(self,chid):
         link=(f"https://www.youtube.com/channel/{chid}/live")
-        proxy = islive.random_line('proxy.txt')
+        path=os.getcwd()
+        lines =  open(f"{path}\proxy.txt").read().splitlines()
+        proxy= random.choice(lines)
         proxies = {
         'http': 'http://' + proxy,
         'https': 'https://' + proxy,
@@ -136,8 +136,10 @@ class islive():
             data=[{"link":link,"status":"ERROR","title":"ERROR"}]  
             return(data)
     def prytlk(self,chid):
+        path=os.getcwd()
         link=f"{chid}/live"
-        proxy = islive.random_line('proxy.txt')
+        lines =  open(f"{path}\proxy.txt").read().splitlines()
+        proxy= random.choice(lines)
         proxies = {
         'http': 'http://' + proxy,
         'https': 'https://' + proxy,
@@ -170,5 +172,6 @@ class islive():
             data=[{"link":link,"status":"ERROR","title":"ERROR"}]  
             return(data)
     def lvgetproxy(self):
-        get_proxy()
+        path=os.getcwd()
+        get_proxy(path)
 #--------------------------------------------------------------------代理--------------------------------------------------------------------  
