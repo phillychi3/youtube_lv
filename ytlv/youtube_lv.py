@@ -1,7 +1,7 @@
 # coding=utf-8
 import requests
 import re
-from getproxy import get_proxy
+from ytlv.proxy_stell import get_proxy
 class islive():
     def random_line(fname):
         lines = open(fname).read().splitlines()
@@ -169,6 +169,6 @@ class islive():
         except:
             data=[{"link":link,"status":"ERROR","title":"ERROR"}]  
             return(data)
-    def lvgetproxy():
+    def lvgetproxy(self):
         get_proxy()
 #--------------------------------------------------------------------代理--------------------------------------------------------------------  
