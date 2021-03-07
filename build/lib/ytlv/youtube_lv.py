@@ -3,7 +3,7 @@ import requests
 import re
 from ytlv.proxy_stell import get_proxy
 class islive():
-    def random_line(fname):
+    def random_line(self,fname):
         lines = open(fname).read().splitlines()
         return(lines)
 
@@ -104,7 +104,7 @@ class islive():
 #--------------------------------------------------------------------代理--------------------------------------------------------------------  
     def prytid(self,chid):
         link=(f"https://www.youtube.com/channel/{chid}/live")
-        proxy = random_line('proxy.txt')
+        proxy = islive.random_line('proxy.txt')
         proxies = {
         'http': 'http://' + proxy,
         'https': 'https://' + proxy,
@@ -137,7 +137,7 @@ class islive():
             return(data)
     def prytlk(self,chid):
         link=f"{chid}/live"
-        proxy = random_line('proxy.txt')
+        proxy = islive.random_line('proxy.txt')
         proxies = {
         'http': 'http://' + proxy,
         'https': 'https://' + proxy,

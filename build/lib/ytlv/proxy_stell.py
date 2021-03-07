@@ -49,3 +49,6 @@ def get_proxy():
 	for position, url in enumerate(foxtools):
 		proxyget(url)
 	print("Current IPs in proxylist: %s" % (len(open("proxy.txt").readlines())))
+
+if __name__ == '__main__':
+	get_proxy()
