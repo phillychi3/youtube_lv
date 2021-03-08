@@ -8,7 +8,7 @@ useragents=["AdsBot-Google ( http://www.google.com/adsbot.html)",
 			"Avant Browser/1.2.789rel1 (http://www.avantbrowser.com)"
 ]
 
-def proxyget(url):
+def proxyget(url,path):
 	try:
 		req = urllib.request.Request(url) 
 		req.add_header("User-Agent", random.choice(useragents)) 
@@ -18,7 +18,7 @@ def proxyget(url):
 				ipf = list(filter(lambda x: x if not x.startswith("0.") else None, ip)) 
 				if ipf: 
 					for x in ipf:						
-						out_file = open("proxy.txt","a")
+						out_file = open(f"{path}\proxy.txt","a")
 						while True:
 							out_file.write(x+"\n") 
 							out_file.close()
@@ -44,19 +44,19 @@ def proxylist():
 	print("Current IPs in proxylist: %s" % (len(open("proxy.txt").readlines())))
 	print ("\nProxylist Updated!\n")
 
-def get_proxy():
+def get_proxy(path):
 	try:
-		out_file = open("proxy.txt","w") 
+		out_file = open(f"{path}\proxy.txt","w") 
 		out_file.close()
 	except:
-		file = open("proxy.txt","a")
+		file = open(f"{path}\proxy.txt","a+")
 		file.close()
 
 
 	foxtools = ['http://api.foxtools.ru/v2/Proxy.txt?page=%d' % n for n in range(1, 6)]
 	for position, url in enumerate(foxtools):
-		proxyget(url)
-	print("get ip: %s" % (len(open("proxy.txt").readlines())))
+		proxyget(url,path)
+	print("get ip: %s" % (len(open(f"{path}\proxy.txt").readlines())))
 
 if __name__ == '__main__':
 	get_proxy()

@@ -106,12 +106,11 @@ class islive():
         lines =  open(f"{path}\proxy.txt").read().splitlines()
         proxy= random.choice(lines)
         proxies = {
-        'http': 'http://' + proxy,
-        'https': 'https://' + proxy,
+        'http': 'http://' + proxy        
          }
 
         try:
-            r = requests.get(link,proxies=proxies)
+            r = requests.get(link,proxies=proxies,verify=False)
             if  re.search(r'"isLive":true', r.text) is None:                
                 data=[{"link":link,"status":"NONE","title":"NONE"}]  
                 return(data)
@@ -140,13 +139,13 @@ class islive():
         link=f"{chid}/live"
         lines =  open(f"{path}\proxy.txt").read().splitlines()
         proxy= random.choice(lines)
+        
         proxies = {
-        'http': 'http://' + proxy,
-        'https': 'https://' + proxy,
+        'http': 'http://' + proxy        
          }
 
         try:
-            r = requests.get(link,proxies=proxies)
+            r = requests.get(link,proxies=proxies,verify=False)
             if  re.search(r'"isLive":true', r.text) is None:                
                 data=[{"link":link,"status":"NONE","title":"NONE"}]  
                 return(data)
@@ -175,3 +174,10 @@ class islive():
         path=os.getcwd()
         get_proxy(path)
 #--------------------------------------------------------------------代理--------------------------------------------------------------------  
+
+if __name__ == "__main__":
+    lol=input("thing")
+    lv=islive()
+    #lv.lvgetproxy()
+    live=lv.prytid(lol)
+    print(live)
