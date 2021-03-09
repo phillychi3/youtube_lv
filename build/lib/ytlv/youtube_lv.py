@@ -110,7 +110,7 @@ class islive():
          }
 
         try:
-            r = requests.get(link,proxies=proxies,verify=False)
+            r = requests.get(link,proxies=proxies)
             if  re.search(r'"isLive":true', r.text) is None:                
                 data=[{"link":link,"status":"NONE","title":"NONE"}]  
                 return(data)
@@ -145,7 +145,7 @@ class islive():
          }
 
         try:
-            r = requests.get(link,proxies=proxies,verify=False)
+            r = requests.get(link,proxies=proxies)
             if  re.search(r'"isLive":true', r.text) is None:                
                 data=[{"link":link,"status":"NONE","title":"NONE"}]  
                 return(data)
