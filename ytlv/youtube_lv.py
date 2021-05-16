@@ -35,16 +35,19 @@ class islive():
 
                 try:
                     picture=re.findall(r'rel="canonical" href="(.*?)"', r.text)
-                    trueurl=picture.strip().strip("[]'")
-                    pictureurl=trueurl[32:]
+                    picture=str(picture)
+                    ftrueurl=picture.strip().strip("[]'")
+                    pictureurl=ftrueurl[32:]
                     pictureurl=f"https://i.ytimg.com/vi/{pictureurl}/maxresdefault_live.jpg"
 
                 except:
+                    ftrueurl="NONE"
                     pictureurl="NONE"
 
-                data=[{"link":trueurl,"status":status,"title":title,"picture":pictureurl}]
+                data=[{"link":ftrueurl,"status":status,"title":title,"picture":pictureurl}]
                 return(data)
-        except:
+        except Exception as e:
+            print(e)
             data=[{"link":link,"status":"ERROR","title":"ERROR","picture":"ERROR"}]  
             return(data)
     def ytlk(self,chid):
@@ -73,14 +76,16 @@ class islive():
                     status="NONE"
                 try:
                     picture=re.findall(r'rel="canonical" href="(.*?)"', r.text)
-                    trueurl=picture.strip().strip("[]'")
-                    pictureurl=trueurl[32:]
+                    picture=str(picture)
+                    ftrueurl=picture.strip().strip("[]'")
+                    pictureurl=ftrueurl[32:]
                     pictureurl=f"https://i.ytimg.com/vi/{pictureurl}/maxresdefault_live.jpg"
 
                 except:
+                    ftrueurl="NONE"
                     pictureurl="NONE"
 
-                data=[{"link":trueurl,"status":status,"title":title,"picture":pictureurl}]
+                data=[{"link":ftrueurl,"status":status,"title":title,"picture":pictureurl}]
 
                 return(data)
         except:
@@ -113,14 +118,16 @@ class islive():
                     status="NONE"
                 try:
                     picture=re.findall(r'rel="canonical" href="(.*?)"', r.text)
-                    trueurl=picture.strip().strip("[]'")
-                    pictureurl=trueurl[32:]
+                    picture=str(picture)
+                    ftrueurl=picture.strip().strip("[]'")
+                    pictureurl=ftrueurl[32:]
                     pictureurl=f"https://i.ytimg.com/vi/{pictureurl}/maxresdefault_live.jpg"
 
                 except:
+                    ftrueurl="NONE"
                     pictureurl="NONE"
 
-                data=[{"link":trueurl,"status":status,"title":title,"picture":pictureurl}]
+                data=[{"link":ftrueurl,"status":status,"title":title,"picture":pictureurl}]
                 return(data)
 
 
@@ -160,14 +167,16 @@ class islive():
                     status="NONE"
                 try:
                     picture=re.findall(r'rel="canonical" href="(.*?)"', r.text)
-                    trueurl=picture.strip().strip("[]'")
-                    pictureurl=trueurl[32:]
+                    picture=str(picture)
+                    ftrueurl=picture.strip().strip("[]'")
+                    pictureurl=ftrueurl[32:]
                     pictureurl=f"https://i.ytimg.com/vi/{pictureurl}/maxresdefault_live.jpg"
 
                 except:
+                    ftrueurl="NONE"
                     pictureurl="NONE"
 
-                data=[{"link":trueurl,"status":status,"title":title,"picture":pictureurl}]
+                data=[{"link":ftrueurl,"status":status,"title":title,"picture":pictureurl}]
                 return(data)
         except:
             data=[{"link":link,"status":"ERROR","title":"ERROR","picture":"ERROR"}]
@@ -205,16 +214,19 @@ class islive():
                     status="NONE"
                 try:
                     picture=re.findall(r'rel="canonical" href="(.*?)"', r.text)
-                    trueurl=picture.strip().strip("[]'")
-                    pictureurl=trueurl[32:]
+                    picture=str(picture)
+                    ftrueurl=picture.strip().strip("[]'")
+                    pictureurl=ftrueurl[32:]
                     pictureurl=f"https://i.ytimg.com/vi/{pictureurl}/maxresdefault_live.jpg"
 
                 except:
+                    ftrueurl="NONE"
                     pictureurl="NONE"
 
-                data=[{"link":trueurl,"status":status,"title":title,"picture":pictureurl}]
+                data=[{"link":ftrueurl,"status":status,"title":title,"picture":pictureurl}]
                 return(data)
-        except:
+        except Exception as e:
+            print(e)
             data=[{"link":link,"status":"ERROR","title":"ERROR","picture":"ERROR"}]  
             return(data)
     def lvgetproxy(self):
