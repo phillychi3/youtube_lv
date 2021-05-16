@@ -1,5 +1,4 @@
 
-
 ### how to download
 `pip install youtube-lv`
 ### how to update
@@ -19,6 +18,7 @@ use LINK
 from ytlv import *
 lv=islive()
 live=lv.ytlk("channel link")
+<<<<<<< HEAD
 print(live)
 ```
 
