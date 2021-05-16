@@ -14,8 +14,8 @@ class islive():
         
         try:
             r = requests.get(link)
-            if  re.search(r'"isLive":true', r.text) is None:                
-                data=[{"link":link,"status":"NONE","title":"NONE"}]  
+            if  re.search(r'"isLive":true', r.text) is None:
+                data=[{"link":link,"status":"NONE","title":"NONE","picture":"NONE"}]  
                 return(data)
             else:
                 try:
@@ -31,11 +31,21 @@ class islive():
                     if status=="LIVE_STREAM_OFFLINE":
                         status="LIVE_OFFLINE"
                 except:
-                    status="NONE"
-                data=[{"link":link,"status":status,"title":title}]  
+                    status="NONE"                
+
+                try:
+                    picture=re.findall(r'rel="canonical" href="(.*?)"', r.text)
+                    trueurl=picture.strip().strip("[]'")
+                    pictureurl=trueurl[32:]
+                    pictureurl=f"https://i.ytimg.com/vi/{pictureurl}/maxresdefault_live.jpg"
+
+                except:
+                    pictureurl="NONE"
+
+                data=[{"link":trueurl,"status":status,"title":title,"picture":pictureurl}]
                 return(data)
         except:
-            data=[{"link":link,"status":"ERROR","title":"ERROR"}]  
+            data=[{"link":link,"status":"ERROR","title":"ERROR","picture":"ERROR"}]  
             return(data)
     def ytlk(self,chid):
         link=f"{chid}/live"
@@ -43,7 +53,7 @@ class islive():
         try:
             r = requests.get(link)
             if  re.search(r'"isLive":true', r.text) is None:                
-                data=[{"link":link,"status":"NONE","title":"NONE"}]  
+                data=[{"link":link,"status":"NONE","title":"NONE","picture":"NONE"}]
                 return(data)
             else:
                 try:
@@ -61,10 +71,20 @@ class islive():
                         status="LIVE_OFFLINE"
                 except:
                     status="NONE"
-                data=[{"link":link,"status":status,"title":title}]  
+                try:
+                    picture=re.findall(r'rel="canonical" href="(.*?)"', r.text)
+                    trueurl=picture.strip().strip("[]'")
+                    pictureurl=trueurl[32:]
+                    pictureurl=f"https://i.ytimg.com/vi/{pictureurl}/maxresdefault_live.jpg"
+
+                except:
+                    pictureurl="NONE"
+
+                data=[{"link":trueurl,"status":status,"title":title,"picture":pictureurl}]
+
                 return(data)
         except:
-            data=[{"link":link,"status":"ERROR","title":"ERROR"}]  
+            data=[{"link":link,"status":"ERROR","title":"ERROR","picture":"ERROR"}]
             return(data)
 #--------------------------------------------------------------------正常--------------------------------------------------------------------  
 #--------------------------------------------------------------------天使--------------------------------------------------------------------           
@@ -73,7 +93,7 @@ class islive():
         try:
             r = requests.get(link)
             if  re.search(r'"isLive":true', r.text) is None:                
-                data=[{"link":link,"status":"NONE","title":"NONE"}]  
+                data=[{"link":link,"status":"NONE","title":"NONE","picture":"NONE"}]
                 return(data)
             else:
                 try:
@@ -91,12 +111,21 @@ class islive():
                         status="LIVE_OFFLINE"
                 except:
                     status="NONE"
-                data=[{"link":link,"status":status,"title":title}]  
+                try:
+                    picture=re.findall(r'rel="canonical" href="(.*?)"', r.text)
+                    trueurl=picture.strip().strip("[]'")
+                    pictureurl=trueurl[32:]
+                    pictureurl=f"https://i.ytimg.com/vi/{pictureurl}/maxresdefault_live.jpg"
+
+                except:
+                    pictureurl="NONE"
+
+                data=[{"link":trueurl,"status":status,"title":title,"picture":pictureurl}]
                 return(data)
 
 
         except:
-            data=[{"link":link,"status":"ERROR","title":"ERROR"}]  
+            data=[{"link":link,"status":"ERROR","title":"ERROR","picture":"ERROR"}]
             return(data)
 #--------------------------------------------------------------------天使--------------------------------------------------------------------  
 #--------------------------------------------------------------------代理--------------------------------------------------------------------  
@@ -112,7 +141,7 @@ class islive():
         try:
             r = requests.get(link,proxies=proxies)
             if  re.search(r'"isLive":true', r.text) is None:                
-                data=[{"link":link,"status":"NONE","title":"NONE"}]  
+                data=[{"link":link,"status":"NONE","title":"NONE","picture":"NONE"}]
                 return(data)
             else:
                 try:
@@ -129,10 +158,19 @@ class islive():
                         status="LIVE_OFFLINE"
                 except:
                     status="NONE"
-                data=[{"link":link,"status":status,"title":title}]  
+                try:
+                    picture=re.findall(r'rel="canonical" href="(.*?)"', r.text)
+                    trueurl=picture.strip().strip("[]'")
+                    pictureurl=trueurl[32:]
+                    pictureurl=f"https://i.ytimg.com/vi/{pictureurl}/maxresdefault_live.jpg"
+
+                except:
+                    pictureurl="NONE"
+
+                data=[{"link":trueurl,"status":status,"title":title,"picture":pictureurl}]
                 return(data)
         except:
-            data=[{"link":link,"status":"ERROR","title":"ERROR"}]  
+            data=[{"link":link,"status":"ERROR","title":"ERROR","picture":"ERROR"}]
             return(data)
     def prytlk(self,chid):
         path=os.getcwd()
@@ -147,7 +185,7 @@ class islive():
         try:
             r = requests.get(link,proxies=proxies)
             if  re.search(r'"isLive":true', r.text) is None:                
-                data=[{"link":link,"status":"NONE","title":"NONE"}]  
+                data=[{"link":link,"status":"NONE","title":"NONE","picture":"NONE"}]
                 return(data)
             else:
                 try:
@@ -165,10 +203,19 @@ class islive():
                         status="LIVE_OFFLINE"
                 except:
                     status="NONE"
-                data=[{"link":link,"status":status,"title":title}]  
+                try:
+                    picture=re.findall(r'rel="canonical" href="(.*?)"', r.text)
+                    trueurl=picture.strip().strip("[]'")
+                    pictureurl=trueurl[32:]
+                    pictureurl=f"https://i.ytimg.com/vi/{pictureurl}/maxresdefault_live.jpg"
+
+                except:
+                    pictureurl="NONE"
+
+                data=[{"link":trueurl,"status":status,"title":title,"picture":pictureurl}]
                 return(data)
         except:
-            data=[{"link":link,"status":"ERROR","title":"ERROR"}]  
+            data=[{"link":link,"status":"ERROR","title":"ERROR","picture":"ERROR"}]  
             return(data)
     def lvgetproxy(self):
         path=os.getcwd()
@@ -179,5 +226,5 @@ if __name__ == "__main__":
     lol=input("thing")
     lv=islive()
     #lv.lvgetproxy()
-    live=lv.prytid(lol)
+    live=lv.ytid(lol)
     print(live)
