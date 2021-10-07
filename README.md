@@ -1,3 +1,4 @@
+https://shields.io/pypi/pyversions/youtube-lv
 
 ### how to download
 `pip install youtube-lv`
