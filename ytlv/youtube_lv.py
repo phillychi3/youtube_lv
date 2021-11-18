@@ -30,6 +30,10 @@ class islive():
                     status=re.search(r'"status":"(.*?)"',r.text).group(1)
                     if status=="LIVE_STREAM_OFFLINE":
                         status="LIVE_OFFLINE"
+                        try:
+                            timestamp=re.search(r'"scheduledStartTime":"(.*?)"',r.text).group(1)
+                        except:
+                            timestamp="NONE"
                 except:
                     status="NONE"                
 
@@ -44,11 +48,15 @@ class islive():
                     ftrueurl="NONE"
                     pictureurl="NONE"
 
-                data=[{"link":ftrueurl,"status":status,"title":title,"picture":pictureurl}]
+
+                
+                    
+
+                data=[{"link":ftrueurl,"status":status,"title":title,"picture":pictureurl,"timestamp":timestamp}]
                 return(data)
         except Exception as e:
             print(e)
-            data=[{"link":link,"status":"ERROR","title":"ERROR","picture":"ERROR"}]  
+            data=[{"link":link,"status":"ERROR","title":"ERROR","picture":"ERROR","timestamp":"ERROR"}]  
             return(data)
     def ytlk(self,chid):
         link=f"{chid}/live"
@@ -72,6 +80,10 @@ class islive():
 
                     if status=="LIVE_STREAM_OFFLINE":
                         status="LIVE_OFFLINE"
+                        try:
+                            timestamp=re.search(r'"scheduledStartTime":"(.*?)"',r.text).group(1)
+                        except:
+                            timestamp="NONE"                   
                 except:
                     status="NONE"
                 try:
@@ -85,55 +97,55 @@ class islive():
                     ftrueurl="NONE"
                     pictureurl="NONE"
 
-                data=[{"link":ftrueurl,"status":status,"title":title,"picture":pictureurl}]
-
+                data=[{"link":ftrueurl,"status":status,"title":title,"picture":pictureurl,"timestamp":timestamp}]
                 return(data)
+
         except:
-            data=[{"link":link,"status":"ERROR","title":"ERROR","picture":"ERROR"}]
+            data=[{"link":link,"status":"ERROR","title":"ERROR","picture":"ERROR","timestamp":"ERROR"}]
             return(data)
 #--------------------------------------------------------------------正常--------------------------------------------------------------------  
 #--------------------------------------------------------------------天使--------------------------------------------------------------------           
-    def uto(self,chid):
-        link=chid        
-        try:
-            r = requests.get(link)
-            if  re.search(r'"isLive":true', r.text) is None:                
-                data=[{"link":link,"status":"NONE","title":"NONE","picture":"NONE"}]
-                return(data)
-            else:
-                try:
-                    title=re.findall(r'title="(.*?)"',r.text)
-                    for i in title:
-                        if i !="YouTube":
-                            title=i
-                            break
-                except:
-                    title="NONE"
-                try:
-                    status=re.search(r'"status":"(.*?)"',r.text).group(1)
+    # def uto(self,chid):
+    #     link=chid        
+    #     try:
+    #         r = requests.get(link)
+    #         if  re.search(r'"isLive":true', r.text) is None:                
+    #             data=[{"link":link,"status":"NONE","title":"NONE","picture":"NONE"}]
+    #             return(data)
+    #         else:
+    #             try:
+    #                 title=re.findall(r'title="(.*?)"',r.text)
+    #                 for i in title:
+    #                     if i !="YouTube":
+    #                         title=i
+    #                         break
+    #             except:
+    #                 title="NONE"
+    #             try:
+    #                 status=re.search(r'"status":"(.*?)"',r.text).group(1)
 
-                    if status=="LIVE_STREAM_OFFLINE":
-                        status="LIVE_OFFLINE"
-                except:
-                    status="NONE"
-                try:
-                    picture=re.findall(r'rel="canonical" href="(.*?)"', r.text)
-                    picture=str(picture)
-                    ftrueurl=picture.strip().strip("[]'")
-                    pictureurl=ftrueurl[32:]
-                    pictureurl=f"https://i.ytimg.com/vi/{pictureurl}/maxresdefault_live.jpg"
+    #                 if status=="LIVE_STREAM_OFFLINE":
+    #                     status="LIVE_OFFLINE"
+    #             except:
+    #                 status="NONE"
+    #             try:
+    #                 picture=re.findall(r'rel="canonical" href="(.*?)"', r.text)
+    #                 picture=str(picture)
+    #                 ftrueurl=picture.strip().strip("[]'")
+    #                 pictureurl=ftrueurl[32:]
+    #                 pictureurl=f"https://i.ytimg.com/vi/{pictureurl}/maxresdefault_live.jpg"
 
-                except:
-                    ftrueurl="NONE"
-                    pictureurl="NONE"
+    #             except:
+    #                 ftrueurl="NONE"
+    #                 pictureurl="NONE"
 
-                data=[{"link":ftrueurl,"status":status,"title":title,"picture":pictureurl}]
-                return(data)
+    #             data=[{"link":ftrueurl,"status":status,"title":title,"picture":pictureurl}]
+    #             return(data)
 
 
-        except:
-            data=[{"link":link,"status":"ERROR","title":"ERROR","picture":"ERROR"}]
-            return(data)
+    #     except:
+    #         data=[{"link":link,"status":"ERROR","title":"ERROR","picture":"ERROR"}]
+    #         return(data)
 #--------------------------------------------------------------------天使--------------------------------------------------------------------  
 #--------------------------------------------------------------------代理--------------------------------------------------------------------  
     def prytid(self,chid):
@@ -163,6 +175,10 @@ class islive():
                     status=re.search(r'"status":"(.*?)"',r.text).group(1)
                     if status=="LIVE_STREAM_OFFLINE":
                         status="LIVE_OFFLINE"
+                        try:
+                            timestamp=re.search(r'"scheduledStartTime":"(.*?)"',r.text).group(1)
+                        except:
+                            timestamp="NONE"                     
                 except:
                     status="NONE"
                 try:
@@ -176,10 +192,11 @@ class islive():
                     ftrueurl="NONE"
                     pictureurl="NONE"
 
-                data=[{"link":ftrueurl,"status":status,"title":title,"picture":pictureurl}]
+                data=[{"link":ftrueurl,"status":status,"title":title,"picture":pictureurl,"timestamp":timestamp}]
                 return(data)
+
         except:
-            data=[{"link":link,"status":"ERROR","title":"ERROR","picture":"ERROR"}]
+            data=[{"link":link,"status":"ERROR","title":"ERROR","picture":"ERROR","timestamp":"ERROR"}]
             return(data)
     def prytlk(self,chid):
         path=os.getcwd()
@@ -210,6 +227,10 @@ class islive():
 
                     if status=="LIVE_STREAM_OFFLINE":
                         status="LIVE_OFFLINE"
+                        try:
+                            timestamp=re.search(r'"scheduledStartTime":"(.*?)"',r.text).group(1)
+                        except:
+                            timestamp="NONE"                        
                 except:
                     status="NONE"
                 try:
@@ -223,11 +244,11 @@ class islive():
                     ftrueurl="NONE"
                     pictureurl="NONE"
 
-                data=[{"link":ftrueurl,"status":status,"title":title,"picture":pictureurl}]
+                data=[{"link":ftrueurl,"status":status,"title":title,"picture":pictureurl,"timestamp":timestamp}]
                 return(data)
-        except Exception as e:
-            print(e)
-            data=[{"link":link,"status":"ERROR","title":"ERROR","picture":"ERROR"}]  
+
+        except:
+            data=[{"link":link,"status":"ERROR","title":"ERROR","picture":"ERROR","timestamp":"ERROR"}]
             return(data)
     def lvgetproxy(self):
         path=os.getcwd()

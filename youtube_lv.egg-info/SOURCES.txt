@@ -5,6 +5,7 @@ setup.py
 youtube_lv.egg-info/PKG-INFO
 youtube_lv.egg-info/SOURCES.txt
 youtube_lv.egg-info/dependency_links.txt
+youtube_lv.egg-info/requires.txt
 youtube_lv.egg-info/top_level.txt
 ytlv/__init__.py
 ytlv/proxy_stell.py
