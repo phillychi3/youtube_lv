@@ -34,8 +34,12 @@ class islive():
                             timestamp=re.search(r'"scheduledStartTime":"(.*?)"',r.text).group(1)
                         except:
                             timestamp="NONE"
+                    else:
+                        timestamp="NONE"
+
                 except:
-                    status="NONE"                
+                    status="NONE"         
+                           
 
                 try:
                     picture=re.findall(r'rel="canonical" href="(.*?)"', r.text)
@@ -83,7 +87,9 @@ class islive():
                         try:
                             timestamp=re.search(r'"scheduledStartTime":"(.*?)"',r.text).group(1)
                         except:
-                            timestamp="NONE"                   
+                            timestamp="NONE"
+                    else:
+                        timestamp="NONE"                 
                 except:
                     status="NONE"
                 try:
@@ -178,7 +184,9 @@ class islive():
                         try:
                             timestamp=re.search(r'"scheduledStartTime":"(.*?)"',r.text).group(1)
                         except:
-                            timestamp="NONE"                     
+                            timestamp="NONE"
+                    else:
+                        timestamp="NONE"                   
                 except:
                     status="NONE"
                 try:
@@ -230,7 +238,9 @@ class islive():
                         try:
                             timestamp=re.search(r'"scheduledStartTime":"(.*?)"',r.text).group(1)
                         except:
-                            timestamp="NONE"                        
+                            timestamp="NONE"
+                    else:
+                        timestamp="NONE"                 
                 except:
                     status="NONE"
                 try:
