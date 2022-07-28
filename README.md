@@ -28,13 +28,16 @@ get proxy server
 ```python
 lvgetproxy(self)
 ```
+
 use proxy server to get youtube status
+
 ```python
 from ytlv import *
 lv=islive()
 live=lv.prytid("channel id")
 print(live)
 ```
+
 ```python
 from ytlv import *
 lv=islive()
@@ -43,6 +46,7 @@ print(live)
 ```
 
 return:
+
 ```json
 [
    {
