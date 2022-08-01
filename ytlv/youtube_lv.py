@@ -17,7 +17,7 @@ class islive():
             url=URL+url
         r = requests.get(url, headers={'User-Agent': user_agent})
         if re.search(r'isLiveBroadcast',r.content.decode('utf-8')) is None:
-            data=[{"link":url,"status":"NONE","title":"NONE","picture":"NONE","avatar":"NONE"}]
+            data={"link":url,"status":"NONE","title":"NONE","picture":"NONE","avatar":"NONE"}
             return(data)
         try:
             pictureurl=re.findall(r'"thumbnailUrl":\[(.*?)\]',r.content.decode('utf-8'))[0].split(',')[2].strip('"')
