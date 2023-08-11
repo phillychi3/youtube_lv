@@ -1,7 +1,6 @@
-from ytlv import Youtube_lv
-lv=Youtube_lv()
+from ytlv import twitch
 
 
 def test_get_true_func():
-    live=lv.twitch("lofi_chill_lounge")
+    live=twitch("leekbeats")
     assert  live["status"]=="LIVE"

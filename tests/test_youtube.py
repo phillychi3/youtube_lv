@@ -1,14 +1,14 @@
-from ytlv import Youtube_lv
-lv=Youtube_lv()
+from ytlv import youtube
+
 
 
 def test_noerror():
-    live=lv.youutbe("UCdn5BQ06XqgXoAxIhbqw5Rg")
+    live=youtube("UCdn5BQ06XqgXoAxIhbqw5Rg")
     assert live["status"]!="ERROR"
 
 
 def test_canreadlivestatus():
-    live=lv.youutbe("UCSJ4gkVC6NrvII8umztf0Ow")
+    live=youtube("https://www.youtube.com/@LofiGirl")
     assert live["status"]=="OK"
 
     

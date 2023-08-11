@@ -1,60 +1,41 @@
 ![image](https://shields.io/pypi/pyversions/youtube-lv)
 
 ### how to download
+
 `pip install youtube-lv`
+
 ### how to update
+
 `pip install --upgrade youtube-lv`
+
 ### how to use
 
-use ID
+Youtube
+
 ```python
-from ytlv import *
-lv=islive()
-live=lv.ytid("channel ID")
+from ytlv import youtube
+live=youtube("https://www.youtube.com/@ShirakamiFubuki")
 print(live)
+{
+  "link": "url",
+  "status": "live status",
+  "title": "live title",
+  "picture": "live image",
+  "timestamp": "timestamp"
+}
 ```
 
-use LINK
+Twitch
+
 ```python
-from ytlv import *
-lv=islive()
-live=lv.ytlk("channel link")
-<<<<<<< HEAD
+from ytlv import twitch
+live=twitch("iitifox")
 print(live)
-```
-
-get proxy server
-
-```python
-lvgetproxy(self)
-```
-
-use proxy server to get youtube status
-
-```python
-from ytlv import *
-lv=islive()
-live=lv.prytid("channel id")
-print(live)
-```
-
-```python
-from ytlv import *
-lv=islive()
-live=lv.prytlk("channel link")
-print(live)
-```
-
-return:
-
-```json
-[
-   {
-      "link":"url",
-      "status":"live status",
-      "title":"live title",
-      "picture":"live image",
-      "timestamp":"timestamp"
-   }
-]
+{
+   "link":"url",
+   "status":"LIVE",
+   "title":"title",
+   "picture":"pictureurl",
+   "avatar":"avatar"
+}
 ```
