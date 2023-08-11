@@ -44,11 +44,14 @@ def youtube(url) -> dict:
     Returns:
         dict: {"link":url,"status":"LIVE","title":title,"picture":pictureurl,"avatar":avatar}
     """
-    if match:=re.match(r'https://www.youtube.com/channel/[a-zA-Z0-9]*',url):
+    if re.match(r'https://www.youtube.com/channel/[a-zA-Z0-9]*',url):
+        match=re.match(r'https://www.youtube.com/channel/[a-zA-Z0-9]*',url)
         link=match.group(0)+"/live"
-    elif match:=re.match(r"https://www.youtube.com/@[-a-zA-Z0-9_]*",url):
+    elif re.match(r"https://www.youtube.com/@[-a-zA-Z0-9_]*",url):
+        match=re.match(r"https://www.youtube.com/@[-a-zA-Z0-9_]*",url)
         link=match.group(0)+"/live"
-    elif match:=re.match(r"[-a-zA-Z0-9_@]*",url):
+    elif re.match(r"[-a-zA-Z0-9_@]*",url):
+        match=re.match(r"[-a-zA-Z0-9_@]*",url)
         if "@" in url:
             link="https://www.youtube.com/"+url+"/live"
         else:
