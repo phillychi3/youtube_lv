@@ -91,8 +91,8 @@ def youtube(url) -> dict:
             except:
                 ftrueurl="NONE"
                 pictureurl="NONE"
-            data=[{"link":ftrueurl,"status":status,"title":title,"picture":pictureurl,"timestamp":timestamp}]
-            return(data)
+            data={"link":ftrueurl,"status":status,"title":title,"picture":pictureurl,"timestamp":timestamp}
+            return data
     except Exception as e:
         data={"link":link,"status":"ERROR","title":"ERROR","picture":"ERROR","timestamp":"ERROR"}
         return data
