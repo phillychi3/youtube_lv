@@ -1,5 +1,5 @@
-from ytlv import *
-lv=islive()
+from ytlv import Youtube_lv
+lv=Youtube_lv()
 
 
 def test_get_true_func():

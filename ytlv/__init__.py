@@ -1,1 +1,1 @@
-from .youtube_lv import islive
+from .youtube_lv import Youtube_lv
