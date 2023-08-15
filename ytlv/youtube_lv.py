@@ -1,5 +1,31 @@
 import requests
 import re
+from dataclasses import dataclass
+
+@dataclass
+class Twitch:
+    """
+    twitch dataclass
+    """
+    link:str
+    status:str | None
+    islive:bool    
+    title:str | None
+    picture:str | None
+    avatar:str | None
+
+@dataclass
+class Youtube:
+    """
+    youtube dataclass
+    """
+    channellink:str
+    link:str | None
+    status:str | None
+    islive:bool
+    title:str | None
+    picture:str | None
+    timestamp:float | None
 
 def twitch(url:str) -> dict:
     """_summary_
@@ -15,25 +41,27 @@ def twitch(url:str) -> dict:
     if "https://www.twitch.tv/" not in url:
         url=URL+url
     r = requests.get(url, headers={'User-Agent': user_agent})
+    if r.status_code != 200:
+        raise Exception("url error")
     if re.search(r'isLiveBroadcast',r.content.decode('utf-8')) is None:
-        data={"link":url,"status":"NONE","title":"NONE","picture":"NONE","avatar":"NONE"}
+        data=Twitch(url,None,False,None,None,None)
         return data
     try:
         pictureurl=re.findall(r'"thumbnailUrl":\[(.*?)\]',r.content.decode('utf-8'))[0].split(',')[2].strip('"')
     except:
-        pictureurl="NONE"
+        pictureurl=None
     try:
         avatar = re.findall(r'"twitter:image" content="(.*?)"',r.content.decode('utf-8'))[0]
     except:
-        avatar="NONE"
+        avatar=None
     try:
         title = re.findall(r'twitter:description" content="(.*?)"',r.content.decode('utf-8'))[0]
     except:
-        title="NONE"
-    data = {"link":url,"status":"LIVE","title":title,"picture":pictureurl,"avatar":avatar}
+        title=None
+    data = Twitch(url,"LIVE",True,title,pictureurl,avatar)
     return data
 
-def youtube(url) -> dict:
+def youtube(url:str) -> dict:
     """__summary__
     Args:
         url (str): youtube channel name or link
@@ -44,8 +72,8 @@ def youtube(url) -> dict:
     Returns:
         dict: {"link":url,"status":"LIVE","title":title,"picture":pictureurl,"avatar":avatar}
     """
-    if re.match(r'https://www.youtube.com/channel/[a-zA-Z0-9]*',url):
-        match=re.match(r'https://www.youtube.com/channel/[a-zA-Z0-9]*',url)
+    if re.match(r'https://www.youtube.com/channel/[-a-zA-Z0-9_]*',url):
+        match=re.match(r'https://www.youtube.com/channel/[-a-zA-Z0-9_]*',url)
         link=match.group(0)+"/live"
     elif re.match(r"https://www.youtube.com/@[-a-zA-Z0-9_]*",url):
         match=re.match(r"https://www.youtube.com/@[-a-zA-Z0-9_]*",url)
@@ -59,10 +87,15 @@ def youtube(url) -> dict:
     
     try:
         r = requests.get(link)
+        
+        if r.status_code != 200:
+            raise Exception("url error")
+        link = link.replace("/live","")        
         if  re.search(r'"isLive":true', r.text) is None:
-            data={"link":link,"status":"NONE","title":"NONE","picture":"NONE","timestamp":"NONE"}
+            data = Youtube(link,None,None,False,None,None,None)
             return data
         else:
+            statusbool=False
             try:
                 title=re.findall(r'title="(.*?)"',r.text)
                 for i in title:
@@ -70,20 +103,26 @@ def youtube(url) -> dict:
                         title=i
                         break
             except:
-                title="NONE"
+                title=None
             try:
                 status=re.search(r'"status":"(.*?)"',r.text).group(1)
-                if status=="LIVE_STREAM_OFFLINE":
-                    status="LIVE_OFFLINE"
+                if status=="OK":
+                    status="LIVE"
+                    statusbool=True
+                    timestamp=None
+                elif status=="LIVE_STREAM_OFFLINE":
+                    status="READY_TO_LIVE"
                     try:
                         timestamp=re.search(r'"scheduledStartTime":"(.*?)"',r.text).group(1)
+                        timestamp=float(timestamp)
                     except:
-                        timestamp="NONE"
+                        timestamp=None
                 else:
-                    timestamp="NONE"
+                    timestamp=None
 
             except:
-                status="NONE"         
+                status=None
+                timestamp=None
             try:
                 picture=re.findall(r'rel="canonical" href="(.*?)"', r.text)
                 picture=str(picture)
@@ -92,13 +131,12 @@ def youtube(url) -> dict:
                 pictureurl=f"https://i.ytimg.com/vi/{pictureurl}/maxresdefault_live.jpg"
 
             except:
-                ftrueurl="NONE"
-                pictureurl="NONE"
-            data={"link":ftrueurl,"status":status,"title":title,"picture":pictureurl,"timestamp":timestamp}
+                ftrueurl=None
+                pictureurl=None                         
+            data=Youtube(link,ftrueurl,status,statusbool,title,pictureurl,timestamp)
             return data
     except Exception as e:
-        data={"link":link,"status":"ERROR","title":"ERROR","picture":"ERROR","timestamp":"ERROR"}
-        return data
+        raise Exception(e)
 
 
 if __name__ == "__main__":

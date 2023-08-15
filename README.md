@@ -16,14 +16,24 @@ Youtube
 from ytlv import youtube
 live=youtube("https://www.youtube.com/@ShirakamiFubuki")
 print(live)
-{
-  "link": "url",
-  "status": "live status",
-  "title": "live title",
-  "picture": "live image",
-  "timestamp": "timestamp"
-}
+# return Youtube class
 ```
+
+#### Youtube class
+
+    channellink :str
+    link: str | None
+    status: str | None
+    islive: bool
+    title: str | None
+    picture: str | None
+    timestamp: float | None
+
+#### Youtube status
+
+      "LIVE" | "READY_TO_LIVE" | None
+
+#### Youtube class
 
 Twitch
 
@@ -31,11 +41,18 @@ Twitch
 from ytlv import twitch
 live=twitch("iitifox")
 print(live)
-{
-   "link":"url",
-   "status":"LIVE",
-   "title":"title",
-   "picture":"pictureurl",
-   "avatar":"avatar"
-}
+# return twitch class
 ```
+
+#### Twitch class
+
+    link: str
+    status: str | None
+    islive: bool
+    title: str | None
+    picture: str | None
+    avatar: str | None
+
+#### Twitch status
+
+      "LIVE" | None

@@ -4,7 +4,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name='youtube_lv',  
-    version='1.0.0',
+    version='1.1.0',
     author="phillychi3",
     author_email="phillychi3@gmail.com",
     description="check youtuber live status",
@@ -19,5 +19,4 @@ setuptools.setup(
         "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
     ]
-    
  )
