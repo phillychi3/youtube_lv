@@ -31,7 +31,7 @@ print(live)
 
 #### Youtube status
 
-      "LIVE" | "READY_TO_LIVE" | None
+      "LIVE" | "READY_TO_LIVE" | "ERROR"| None
 
 #### Youtube class
 
@@ -55,4 +55,4 @@ print(live)
 
 #### Twitch status
 
-      "LIVE" | None
+      "LIVE" | "ERROR" | None 

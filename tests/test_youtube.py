@@ -13,10 +13,10 @@ def test_hyphen():
 
 def test_canreadlivestatus():
     live=youtube("https://www.youtube.com/@LofiGirl")
-    assert live.status =="OK"
+    assert live.status =="LIVE"
 
 def test_canreadlivestatus2():
     live=youtube("@LofiGirl")
-    assert live.status =="OK"
+    assert live.status =="LIVE"
 
     
