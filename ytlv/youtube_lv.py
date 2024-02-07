@@ -10,7 +10,7 @@ class Twitch:
     """
     link:str
     status:str | None
-    islive:bool    
+    islive:bool
     title:str | None
     picture:str | None
     avatar:str | None
@@ -76,22 +76,30 @@ def youtube(url:str) -> dict:
     if re.match(r'https://www.youtube.com/channel/[-a-zA-Z0-9_]*',url):
         match=re.match(r'https://www.youtube.com/channel/[-a-zA-Z0-9_]*',url)
         link=match.group(0)+"/live"
+    elif re.match(r'https://youtube.com/channel/[-a-zA-Z0-9_]*',url):
+        match=re.match(r'https://www.youtube.com/channel/[-a-zA-Z0-9_]*',url)
+        link=match.group(0)+"/live"
+        link = link.replace("youtube.com","www.youtube.com")
     elif re.match(r"https://www.youtube.com/@[-a-zA-Z0-9_]*",url):
         match=re.match(r"https://www.youtube.com/@[-a-zA-Z0-9_]*",url)
         link=match.group(0)+"/live"
+    elif re.match(r"https://youtube.com/@[-a-zA-Z0-9_]*",url):
+        match=re.match(r"https://youtube.com/@[-a-zA-Z0-9_]*",url)
+        link=match.group(0)+"/live"
+        link = link.replace("youtube.com","www.youtube.com")
     elif re.match(r"[-a-zA-Z0-9_@]*",url):
         match=re.match(r"[-a-zA-Z0-9_@]*",url)
         if "@" in url:
             link="https://www.youtube.com/"+url+"/live"
         else:
             link="https://www.youtube.com/channel/"+url+"/live"
-    
+
     try:
         r = requests.get(link)
-        
+
         if r.status_code != 200:
             raise Exception("url error")
-        link = link.replace("/live","")        
+        link = link.replace("/live","")
         if  re.search(r'"isLive":true', r.text) is None:
             data = Youtube(link,None,None,False,None,None,None)
             return data
@@ -133,7 +141,7 @@ def youtube(url:str) -> dict:
 
             except:
                 ftrueurl=None
-                pictureurl=None                         
+                pictureurl=None
             data=Youtube(link,ftrueurl,status,statusbool,title,pictureurl,timestamp)
             return data
     except Exception as e:

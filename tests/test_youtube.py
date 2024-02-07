@@ -19,4 +19,6 @@ def test_canreadlivestatus2():
     live=youtube("@LofiGirl")
     assert live.status =="LIVE"
 
-    
+def test_canreadlivestatus3():
+    live=youtube("https://youtube.com/@LofiGirl")
+    assert live.status =="LIVE"
