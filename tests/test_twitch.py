@@ -7,6 +7,6 @@ def test_get_true_func():
 
 def test_twitch_url_true():
     try:
-        live=twitch("https://www.twitch.tv/utonyan")  # noqa: F841
+        _=twitch("https://www.twitch.tv/utonyan")
     except:  # noqa: E722
         assert False
