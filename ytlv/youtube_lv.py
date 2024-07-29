@@ -1,6 +1,7 @@
 from __future__ import annotations
 import requests
 import re
+import json
 from dataclasses import dataclass
 
 @dataclass
@@ -28,9 +29,16 @@ class Youtube:
     picture:str | None
     timestamp:float | None
 
-def twitch(url:str) -> dict:
-    """_summary_
+@dataclass
+class Youtube_lives:
+    channellink:str
+    link:str | None
+    picture: list[str] | None
+    title: str | None
+    islive: bool
 
+def twitch(url:str) -> dict:
+    """
     Args:
         url (str): twitch channel name or link
 
@@ -63,7 +71,7 @@ def twitch(url:str) -> dict:
     return data
 
 def youtube(url:str) -> dict:
-    """__summary__
+    """
     Args:
         url (str): youtube channel name or link
         example: https://www.youtube.com/@ShirakamiFubuki
@@ -147,8 +155,54 @@ def youtube(url:str) -> dict:
     except Exception as e:
         raise Exception(e)
 
+def youtube_lives(url:str) -> list:
+    """
+    Args:
+        ## !!! /streams must in the url
+        url (str): youtube channel streams page url
+        example: https://www.youtube.com/@ShirakamiFubuki/streams
+    Returns:
+        list[YouTube_lives]
+        [{
+            channellink
+            link:str |
+            picture: list[str]
+            title: str
+            islive: bool
+        }]
 
-if __name__ == "__main__":
-    lol=input("thing")
-    live=youtube(lol)
-    print(live)
+    """
+    req = requests.get(url)
+    if req.status_code != 200:
+        raise Exception("url error")
+    PATTERN = r'"content":{"sectionListRenderer":{"contents":(.*?),"trackingParams":"[^"]*","targetId":"[^"]*"[^}]*}'
+    streams = re.search(PATTERN, req.text, re.DOTALL)
+    if streams:
+        content = streams.group(1)
+    else:
+        raise Exception("not find")
+    try:
+        data = json.loads(content)
+    except json.JSONDecodeError as e:
+        raise Exception("JSON Decode Error", e)
+    lives = []
+    for i in data:
+        try:
+            for items in i["itemSectionRenderer"]["contents"][0]["shelfRenderer"]["content"]["horizontalListRenderer"]["items"]:
+                live = Youtube_lives
+                video = items["gridVideoRenderer"]
+                if "shortBylineText" not in video:
+                    live.channellink = "https://youtube.com"+i["itemSectionRenderer"]["contents"][0]["shelfRenderer"]["endpoint"]["browseEndpoint"]["canonicalBaseUrl"]
+                else:
+                    live.channellink = "https://youtube.com"+video["shortBylineText"]["runs"][0]["navigationEndpoint"]["browseEndpoint"]["canonicalBaseUrl"]
+                live.link = "https://youtube.com"+video["navigationEndpoint"]["commandMetadata"]["webCommandMetadata"]["url"]
+                live.title = video["title"]["simpleText"]
+                live.picture = video["thumbnail"]["thumbnails"]
+                if items["gridVideoRenderer"]["thumbnailOverlays"][0]["thumbnailOverlayTimeStatusRenderer"]["style"] == "LIVE":
+                    live.islive = True
+                else:
+                    live.islive = False
+                lives.append(live)
+        except AttributeError:
+            continue
+    return lives

@@ -33,7 +33,21 @@ print(live)
 
       "LIVE" | "READY_TO_LIVE" | "ERROR"| None
 
+```python
+from ytlv import youtube
+live=youtube_lives("https://www.youtube.com/@ShirakamiFubuki/streams")
+print(live)
+# return Youtube_lives class
+```
+
 #### Youtube class
+
+    [
+        channellink: str
+        link: str | None
+        picture: list[str] | None
+        title: str | None
+    ]
 
 Twitch
 
@@ -55,4 +69,4 @@ print(live)
 
 #### Twitch status
 
-      "LIVE" | "ERROR" | None 
+      "LIVE" | "ERROR" | None
