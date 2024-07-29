@@ -172,6 +172,8 @@ def youtube_lives(url:str) -> list:
         }]
 
     """
+    if not url.endswith("/streams"):
+        raise Exception("/streams must in the url")
     req = requests.get(url)
     if req.status_code != 200:
         raise Exception("url error")
