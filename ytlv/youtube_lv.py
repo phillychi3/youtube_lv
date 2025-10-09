@@ -193,10 +193,7 @@ def youtube_lives(url:str) -> list:
             for items in i["itemSectionRenderer"]["contents"][0]["shelfRenderer"]["content"]["horizontalListRenderer"]["items"]:
                 live = Youtube_lives
                 video = items["gridVideoRenderer"]
-                if "shortBylineText" not in video:
-                    live.channellink = "https://youtube.com"+i["itemSectionRenderer"]["contents"][0]["shelfRenderer"]["endpoint"]["browseEndpoint"]["canonicalBaseUrl"]
-                else:
-                    live.channellink = "https://youtube.com"+video["shortBylineText"]["runs"][0]["navigationEndpoint"]["browseEndpoint"]["canonicalBaseUrl"]
+                live.channellink = url.replace("/streams","")
                 live.link = "https://youtube.com"+video["navigationEndpoint"]["commandMetadata"]["webCommandMetadata"]["url"]
                 live.title = video["title"]["simpleText"]
                 live.picture = video["thumbnail"]["thumbnails"]
