@@ -40,8 +40,14 @@ except json.JSONDecodeError as e:
 
 for i in data:
     try:
-        for items in i["itemSectionRenderer"]["contents"][0]["shelfRenderer"]["content"]["horizontalListRenderer"]["items"]:
-            print(items["gridVideoRenderer"]["thumbnailOverlays"][0]["thumbnailOverlayTimeStatusRenderer"]["style"])
+        for items in i["itemSectionRenderer"]["contents"][0]["shelfRenderer"]["content"][
+            "horizontalListRenderer"
+        ]["items"]:
+            print(
+                items["gridVideoRenderer"]["thumbnailOverlays"][0][
+                    "thumbnailOverlayTimeStatusRenderer"
+                ]["style"]
+            )
             video = items["gridVideoRenderer"]
             # if items["gridVideoRenderer"]["thumbnailOverlays"][0]["thumbnailOverlayTimeStatusRenderer"]["style"] == "LIVE":
             #     video = items["gridVideoRenderer"]
@@ -51,12 +57,24 @@ for i in data:
             #     print("https://youtube.com"+i["itemSectionRenderer"]["contents"][0]["shelfRenderer"]["endpoint"]["browseEndpoint"]["canonicalBaseUrl"])
             print(video["title"]["simpleText"])
             print(video["thumbnail"]["thumbnails"])
-            print("https://youtube.com"+video["navigationEndpoint"]["commandMetadata"]["webCommandMetadata"]["url"])
+            print(
+                "https://youtube.com"
+                + video["navigationEndpoint"]["commandMetadata"]["webCommandMetadata"]["url"]
+            )
             if "shortBylineText" not in video:
-                print("https://youtube.com"+i["itemSectionRenderer"]["contents"][0]["shelfRenderer"]["endpoint"]["browseEndpoint"]["canonicalBaseUrl"])
+                print(
+                    "https://youtube.com"
+                    + i["itemSectionRenderer"]["contents"][0]["shelfRenderer"]["endpoint"][
+                        "browseEndpoint"
+                    ]["canonicalBaseUrl"]
+                )
             else:
-                print("https://youtube.com"+video["shortBylineText"]["runs"][0]["navigationEndpoint"]["browseEndpoint"]["canonicalBaseUrl"])
+                print(
+                    "https://youtube.com"
+                    + video["shortBylineText"]["runs"][0]["navigationEndpoint"]["browseEndpoint"][
+                        "canonicalBaseUrl"
+                    ]
+                )
             # print("https://youtube.com"+i["itemSectionRenderer"]["contents"][0]["shelfRenderer"]["endpoint"]["browseEndpoint"]["canonicalBaseUrl"])
     except AttributeError as e:
         print("找不到對應的屬性", e)
-
